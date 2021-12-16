@@ -75,8 +75,9 @@ class Running(Training):
     def get_spent_calories(self) -> float:
         calories = ((self.COEFF_CAL_1 * super().get_mean_speed()
                      - self.COEFF_CAL_2)
-                    * self.weight) / \
-                   (self.M_IN_KM * (self.duration * self.MIN_IN_H))
+                    * self.weight) / (self.M_IN_KM
+                                      * (self.duration
+                                         * self.MIN_IN_H))
         return calories
 
 
@@ -120,19 +121,21 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         """Скорость плавания"""
-        mean_speed = self.length_pool * self.count_pool / self.M_IN_KM / self.duration
+        mean_speed = (self.length_pool * self.count_pool) / self.M_IN_KM / self.duration
         return mean_speed
 
     def get_spent_calories(self) -> float:
         """Калории плавания"""
-        calories = (super().get_mean_speed() + self.coeff_calorie_1) \
-                   * self.coeff_calorie_2 * self.weight
+        calories = (super().get_mean_speed()
+                    + self.coeff_calorie_1) * self.coeff_calorie_2 * self.weight
         return calories
 
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    package = {'SWM': Swimming, 'RUN': Running, 'WLK': SportsWalking}
+    package = {'SWM': Swimming,
+               'RUN': Running,
+               'WLK': SportsWalking}
     return package[workout_type](*data)
 
 
