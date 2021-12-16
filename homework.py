@@ -1,5 +1,6 @@
 class InfoMessage:
     """Информационное сообщение о тренировке."""
+
     def __init__(self,
                  training_type: str,
                  duration: float,
@@ -83,6 +84,7 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
+
     def __init__(self,
                  action: int,
                  duration: float,
@@ -98,7 +100,7 @@ class SportsWalking(Training):
         """Калории ходьбы"""
         calories = ((self.COEFF_CAL_1
                      * self.weight
-                     + (super().get_mean_speed()**2 // self.height)
+                     + (super().get_mean_speed() ** 2 // self.height)
                      * self.COEFF_CAL_2 * self.weight)
                     * (self.duration * self.MIN_IN_H))
         return calories
@@ -106,6 +108,7 @@ class SportsWalking(Training):
 
 class Swimming(Training):
     """Тренировка: плавание."""
+
     def __init__(self,
                  action: int,
                  duration: float,
@@ -128,10 +131,11 @@ class Swimming(Training):
 
     def get_spent_calories(self) -> float:
         """Калории плавания"""
-        calories = (super().get_mean_speed()
-                    + self.coeff_calorie_1) \
-                    * self.coeff_calorie_2 \
-                    * self.weight
+        calories = \
+            (super().get_mean_speed()
+             + self.coeff_calorie_1) \
+            * self.coeff_calorie_2 \
+            * self.weight
         return calories
 
 
