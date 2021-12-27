@@ -59,12 +59,11 @@ class Training:
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
         message = InfoMessage(
-                              self.__class__.__name__,
-                              self.duration,
-                              self.get_distance(),
-                              self.get_mean_speed(),
-                              self.get_spent_calories()
-                              )
+                self.__class__.__name__,
+                self.duration,
+                self.get_distance(),
+                self.get_mean_speed(),
+                self.get_spent_calories())
         return message
 
 
@@ -102,7 +101,10 @@ class SportsWalking(Training):
     def get_spent_calories(self) -> float:
         """Спортивная ходьба: расход калорий."""
         square_speed = super().get_mean_speed() ** 2
-        speed_based_calc = square_speed // self.height * self.KOEF_CAL_2 * self.height
+        speed_based_calc = (square_speed
+                            // self.height
+                            * self.KOEF_CAL_2
+                            * self.height)
         weight_based_calc = self.KOEF_CAL_1 * self.weight
         cal_rate = speed_based_calc + weight_based_calc
         minutes = self.duration * self.MIN_IN_H
@@ -118,13 +120,12 @@ class Swimming(Training):
     LEN_STEP = 1.38
 
     def __init__(
-                 self,
-                 action: int,
-                 duration: float,
-                 weight: float,
-                 length_pool: int,
-                 count_pool: int,
-                 ) -> None:
+            self,
+            action: int,
+            duration: float,
+            weight: float,
+            length_pool: int,
+            count_pool: int,) -> None:
         super().__init__(action, duration, weight)
         self.length_pool = length_pool
         self.count_pool = count_pool
@@ -171,4 +172,3 @@ if __name__ == '__main__':
             main(training)
         except KeyError:
             print('Неизвестный тип тренировки. :(')
-
