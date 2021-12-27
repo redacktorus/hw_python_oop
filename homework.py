@@ -101,8 +101,8 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         """Спортивная ходьба: расход калорий."""
-        sq_speed = super().get_mean_speed() ** 2
-        speed_based_calc = sq_speed // self.height * self.KOEF_CAL_2 * self.height
+        square_speed = super().get_mean_speed() ** 2
+        speed_based_calc = square_speed // self.height * self.KOEF_CAL_2 * self.height
         weight_based_calc = self.KOEF_CAL_1 * self.weight
         cal_rate = speed_based_calc + weight_based_calc
         minutes = self.duration * self.MIN_IN_H
