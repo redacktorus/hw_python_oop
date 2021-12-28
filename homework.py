@@ -137,8 +137,8 @@ class Swimming(Training):
         """Плавание: расход калорий."""
         speed: float = self.get_mean_speed()
         calories: float = (
-                (speed + self.COEF_CAL_1)
-                * self.COEF_CAL_2 * self.weight)
+                        (speed + self.COEF_CAL_1)
+                        * self.COEF_CAL_2 * self.weight)
         return calories
 
 
