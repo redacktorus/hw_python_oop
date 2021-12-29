@@ -104,7 +104,7 @@ class SportsWalking(Training):
                                    * self.height)
         weight_based_calc: float = self.COEF_CAL_1 * self.weight
         cal_rate: float = speed_based_calc + weight_based_calc
-        minutes: int = self.duration * self.MIN_IN_H
+        minutes: float = self.duration * self.MIN_IN_H
         calories: float = cal_rate * minutes
         return calories
 
